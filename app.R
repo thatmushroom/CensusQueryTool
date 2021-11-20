@@ -68,6 +68,8 @@ server <- function(input, output) {
          col = 'darkgray',
          border = 'white')
   })
+  
+  # Fetch raw data ####
   output$cars <- renderTable({
     cars_df <- get_acs(
       state = input$input_state,
@@ -89,10 +91,17 @@ server <- function(input, output) {
       ),
       cache_table = TRUE,
       geometry = FALSE,
-      year = 2018
+      year = input$input_year
     )
     # Subset for testing sake
     cars_df %<>% slice_head(n=10)
+    
+    
+    hh <- get_acs(state = input$input_state,
+                  county = input$input_county,
+                  geography = "tract",
+                  variables = "B11001_001",
+                  year = yr)
   })
   
 }
