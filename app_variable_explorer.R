@@ -41,23 +41,18 @@ ui <- fluidPage(# Application title
     ),
     
     # Show a plot of the generated distribution
-    mainPanel(tableOutput("available_variables"))
+    mainPanel(dataTableOutput("available_variables"))
   ))
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
   # Fetch raw data ####
-  output$available_variables <- renderTable({
+  output$available_variables <- renderDataTable({
     available_variables <- load_variables(
       year = input$input_year,
       dataset = input$input_dataset,
       cache = TRUE
     )
-    # year = 2020,
-    # dataset = "pl",
-    # cache = TRUE)
-    # Subset for testing sake
-    available_variables %<>% slice_head(n = 10)
   })
   
 }
