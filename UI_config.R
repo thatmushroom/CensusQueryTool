@@ -7,5 +7,5 @@ geography_granularity <- c("tract")
 
 # Data availability year
 # TODO: Error-handling around ACS vs Census
-year_list <- c(2018)
+year_list <- c(2018, 2016)
 
