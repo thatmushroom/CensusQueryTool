@@ -91,17 +91,19 @@ server <- function(input, output) {
       ),
       cache_table = TRUE,
       geometry = FALSE,
-      year = input$input_year
+      year = strtoi(input$input_year)
     )
     # Subset for testing sake
-    cars_df %<>% slice_head(n=10)
+    cars_df %<>% slice_head(n = 10)
     
     
-    hh <- get_acs(state = input$input_state,
-                  county = input$input_county,
-                  geography = "tract",
-                  variables = "B11001_001",
-                  year = yr)
+    hh <- get_acs(
+      state = input$input_state,
+      county = input$input_county,
+      geography = "tract",
+      variables = "B11001_001",
+      year = strtoi(input$input_year)
+    )
   })
   
 }
