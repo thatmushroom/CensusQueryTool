@@ -1,6 +1,10 @@
 ## Data input config ####
 library(tidyverse)
+
+options(tigris_use_cache = TRUE)
 # TODO: Make geographic data frame so a user can select state -> county
+# tidycensus::fips_codes has this, but it's important to have filtering on state -> county in dropdowns first.
+# This is thus a useful stub for prototyping
 county_list <- c("Sacramento", "San Francisco", "Denver")
 state_list <- c("CA", "CO")
 geography_granularity <- c("tract")
@@ -27,4 +31,3 @@ acs_matrix_options <-
 colnames(acs_matrix_options) <- c("year", "dataset_name")
 acs_valid_options <- as_tibble(acs_matrix_options)
 # TODO: Does not include island-area summary files yet
-
